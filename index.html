@@ -655,7 +655,7 @@
 						<div class="col-md-offset-1 col-md-5 col-sm-6">
 							<div class="single-contact-box">
 								<div class="contact-form">
-									<form>
+									<form action="mailto:shimmyjain@gmail.com" method="post" enctype="text/plain" onsubmit="return validateForm()">
 										<div class="row">
 											<div class="col-sm-12">
 												<div class="form-group">
@@ -679,6 +679,19 @@
 											</div><!--/.col-->
 										</div><!--/.row-->
 									</form><!--/form-->
+									<script>
+									function validateForm() {
+										var name = document.getElementById("name").value;
+										var email = document.getElementById("email").value;
+										var message = document.getElementById("message").value;
+										
+										if (name == "" || email == "" || message == "") {
+											alert("All fields must be filled out");
+											return false;
+										}
+										return true;
+									}
+									</script>
 								</div>
 							</div>
 						</div>
@@ -700,7 +713,7 @@
 										</div>
 										<div class="single-contact-add-info">
 											<h3>website</h3>
-											<p>www.brownsine.com</p>
+											<a href="https://sheenal.github.io/portfolio/">www.sheenal.github.io/portfolio/</a>
 										</div>
 									</div>
 								</div><!--/.contact-adress-->
