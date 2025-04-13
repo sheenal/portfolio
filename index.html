@@ -233,8 +233,8 @@
 								<div class="row">
 									<div class="col-sm-6">
 										<div class="single-about-add-info">
-											<h3>phone</h3>
-											<a href="tel:+919530127126" target="_blank">9530127126</a>
+											<h3>LinkedIn</h3>
+											<a href="https://www.linkedin.com/in/sheenal-jain-b71010120/" target="_blank">Sheenal Jain</a>
 										</div>
 									</div>
 									<div class="col-sm-6">
@@ -392,7 +392,7 @@
 		<!--experience start -->
 		<section id="experience" class="experience">
 			<div class="section-heading text-center">
-				<h2>experience and education</h2>
+				<h2>experience</h2>
 			</div>
 			<div class="container">
 				<div class="experience-content">
@@ -429,7 +429,7 @@
 												<div class="experience-time">
 													<h2>
 														<span><i class="fa fa-circle" aria-hidden="true"></i></span>
-														Feb 2014 - Dec 2018
+														2014 - 2019
 													</h2>
 													<h3>Senior Developer & Designer</h3>
 												</div><!--/.experience-time-->
@@ -438,7 +438,7 @@
 												<div class="timeline">
 													<div class="timeline-content text-right">
 														<h4 class="title">
-															Webcontxt India Pvt. Ltd.
+															Webcontxt India Pvt Ltd
 														</h4>
 														<h5>Jaipur, India</h5>
 													</div><!--/.timeline-content-->
@@ -448,7 +448,7 @@
 												<div class="experience-time">
 													<h2>
 														<span><i class="fa fa-circle" aria-hidden="true"></i></span>
-														2014 - 2018
+														2014 - 2019
 													</h2>
 													<h3>WordPress Developer & Designer</h3>
 												</div><!--/.experience-time-->
@@ -472,30 +472,6 @@
 														<h4 class="title">
 															<span><i class="fa fa-circle" aria-hidden="true"></i></span>
 															Mitash Pvt Ltd
-														</h4>
-														<h5>Jaipur, India</h5>
-													</div><!--/.timeline-content-->
-												</div><!--/.timeline-->
-											</div>
-										</div>
-									</div><!--/.single-timeline-box-->
-								</li>
-
-								<li>
-									<div class="single-timeline-box fix mb-0">
-										<div class="row">
-											<div class="col-md-5">
-												<div class="experience-time text-right">
-													<h2>2008 - 2012</h2>
-													<h3>Master of Information Technology</h3>
-												</div><!--/.experience-time-->
-											</div>
-											<div class="col-md-offset-1 col-md-5">
-												<div class="timeline">
-													<div class="timeline-content">
-														<h4 class="title">
-															<span><i class="fa fa-circle" aria-hidden="true"></i></span>
-																	Rajasthan College of Engineering for Women
 														</h4>
 														<h5>Jaipur, India</h5>
 													</div><!--/.timeline-content-->
@@ -658,15 +634,10 @@
 					<div class="row">
 						<div class="col-md-offset-1 col-md-5 col-sm-6">
 							<div class="single-contact-box">
-								<div class="contact-form">
+								<div class="contact-form" id="form-container">
 
 
-									<form
-										action="https://formspree.io/f/manevwzg"
-										method="POST"
-										onsubmit="return validateForm()"
-										class="fs-form"
-									>
+									<form	action="https://formspree.io/f/manevwzg" method="POST" class="fs-form" id="contact-form">
 										<input type="hidden" name="_redirect" value="https://sheenal.github.io/portfolio/#thankyou">
 
 										<div class="fs-field">
@@ -676,14 +647,18 @@
 											<input class="fs-input form-control" id="email" name="email" placeholder="Email" type="email" required />
 										</div>
 										<div class="fs-field">
-											<textarea class="fs-textarea form-control" id="message" name="message" placeholder="Message" required></textarea>
+											<textarea class="fs-textarea form-control" id="message" name="message" placeholder="Message"></textarea>
 										</div>
 
 										<div class="fs-button-group single-contact-btn">
 											<button class="fs-button contact-btn" type="submit">Submit</button>
 										</div>
+
 									</form>
 
+									<div id="thank-you" style="display: none; margin-top: 20px;">
+										<p>Thanks! Your message has been sent.</p>
+									</div>
 
 
 
@@ -711,19 +686,7 @@
 											</div>
 										</div>
 									</form> -->
-									<script>
-									function validateForm() {
-										var name = document.getElementById("name").value;
-										var email = document.getElementById("email").value;
-										var message = document.getElementById("message").value;
-										
-										if (name == "" || email == "" || message == "") {
-											alert("All fields must be filled out");
-											return false;
-										}
-										return true;
-									}
-									</script>
+									
 								</div>
 							</div>
 						</div>
@@ -810,6 +773,60 @@
         <!--Custom JS-->
         <script src="assets/js/custom.js"></script>
         
+
+				<script>
+					document.addEventListener("DOMContentLoaded", function () {
+						const form = document.getElementById("contact-form");
+					
+						if (form) {
+							form.addEventListener("submit", async function (e) {
+								e.preventDefault();
+					
+								const formData = new FormData(form);
+					
+								try {
+									const response = await fetch(form.action, {
+										method: form.method,
+										body: formData,
+										headers: {
+											Accept: "application/json",
+										},
+									});
+					
+									if (response.ok) {
+										form.style.display = "none";
+										const thankYou = document.getElementById("thank-you");
+										thankYou.style.display = "block";
+					
+										setTimeout(() => {
+											thankYou.style.display = "none";
+											form.reset();
+											form.style.display = "block";
+										}, 5000);
+									} else {
+										alert("There was an error. Please try again.");
+									}
+								} catch (error) {
+									alert("Something went wrong. Please try again.");
+								}
+							});
+						}
+					});
+					
+
+
+				function validateForm() {
+					var name = document.getElementById("name").value;
+					var email = document.getElementById("email").value;
+					
+					if (name == "" || email == "") {
+						alert("All fields must be filled out");
+						return false;
+					}
+					return true;
+				}
+				</script>
+
     </body>
 	
 </html>
